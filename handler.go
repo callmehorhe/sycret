@@ -1,21 +1,23 @@
 package main
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
 
-type Server struct {
+type Serv struct {
 	httpServer *http.Server
 }
 
-func (s *Server) Run(port string) error {
+func (s *Serv) Run(port string) error {
 	handler := gin.New()
-	handler.GET("/", )
+	handler.GET("/", Start)
 	s.httpServer = &http.Server{
-		Addr: port,
+		Addr:    port,
 		Handler: handler,
 	}
+	log.Printf("listen port %s", port)
 	return s.httpServer.ListenAndServe()
 }
